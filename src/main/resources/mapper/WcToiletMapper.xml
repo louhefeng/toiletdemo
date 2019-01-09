@@ -1,0 +1,701 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bkgd.toiletdemo.dao.WcToiletDao">
+    <resultMap id="BaseResultMap" type="com.bkgd.toiletdemo.model.WcToilet">
+        <id column="tId" jdbcType="VARCHAR" property="tid" />
+        <result column="tName" jdbcType="VARCHAR" property="tname" />
+        <result column="tCode" jdbcType="VARCHAR" property="tcode" />
+        <result column="longitude" jdbcType="VARCHAR" property="longitude" />
+        <result column="latitude" jdbcType="VARCHAR" property="latitude" />
+        <result column="longitude2" jdbcType="VARCHAR" property="longitude2" />
+        <result column="latitude2" jdbcType="VARCHAR" property="latitude2" />
+        <result column="address" jdbcType="VARCHAR" property="address" />
+        <result column="districtCode" jdbcType="VARCHAR" property="districtcode" />
+        <result column="districtName" jdbcType="VARCHAR" property="districtname" />
+        <result column="streetCode" jdbcType="VARCHAR" property="streetcode" />
+        <result column="streetName" jdbcType="VARCHAR" property="streetname" />
+        <result column="unitCode" jdbcType="VARCHAR" property="unitcode" />
+        <result column="unitName" jdbcType="VARCHAR" property="unitname" />
+        <result column="departmentCode" jdbcType="VARCHAR" property="departmentcode" />
+        <result column="departmentName" jdbcType="VARCHAR" property="departmentname" />
+        <result column="tType" jdbcType="VARCHAR" property="ttype" />
+        <result column="level" jdbcType="VARCHAR" property="level" />
+        <result column="washType" jdbcType="VARCHAR" property="washtype" />
+        <result column="grossArea" jdbcType="DECIMAL" property="grossarea" />
+        <result column="mPitNum" jdbcType="INTEGER" property="mpitnum" />
+        <result column="mSeatNum" jdbcType="INTEGER" property="mseatnum" />
+        <result column="mToolNum" jdbcType="INTEGER" property="mtoolnum" />
+        <result column="fPitNum" jdbcType="INTEGER" property="fpitnum" />
+        <result column="fSeatNum" jdbcType="INTEGER" property="fseatnum" />
+        <result column="fToolNum" jdbcType="INTEGER" property="ftoolnum" />
+        <result column="unisexNum" jdbcType="INTEGER" property="unisexnum" />
+        <result column="disabilityNum" jdbcType="INTEGER" property="disabilitynum" />
+        <result column="urinalType" jdbcType="VARCHAR" property="urinaltype" />
+        <result column="urinalNum" jdbcType="INTEGER" property="urinalnum" />
+        <result column="handWashNum" jdbcType="INTEGER" property="handwashnum" />
+        <result column="handDryerNum" jdbcType="INTEGER" property="handdryernum" />
+        <result column="hasBarrierFree" jdbcType="VARCHAR" property="hasbarrierfree" />
+        <result column="hasManagerRoom" jdbcType="VARCHAR" property="hasmanagerroom" />
+        <result column="activeWellNum" jdbcType="INTEGER" property="activewellnum" />
+        <result column="inactiveWellNum" jdbcType="INTEGER" property="inactivewellnum" />
+        <result column="wellLidType" jdbcType="VARCHAR" property="welllidtype" />
+        <result column="wellLidNum" jdbcType="INTEGER" property="welllidnum" />
+        <result column="crossWellNum" jdbcType="INTEGER" property="crosswellnum" />
+        <result column="summerStart" jdbcType="VARCHAR" property="summerstart" />
+        <result column="summerEnd" jdbcType="VARCHAR" property="summerend" />
+        <result column="winterStart" jdbcType="VARCHAR" property="winterstart" />
+        <result column="winterEnd" jdbcType="VARCHAR" property="winterend" />
+        <result column="cId" jdbcType="VARCHAR" property="cid" />
+        <result column="cName" jdbcType="VARCHAR" property="cname" />
+        <result column="createUser" jdbcType="VARCHAR" property="createuser" />
+        <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
+        <result column="updateUser" jdbcType="VARCHAR" property="updateuser" />
+        <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
+        <result column="isBind" jdbcType="VARCHAR" property="isbind" />
+        <result column="inUse" jdbcType="VARCHAR" property="inuse" />
+        <result column="isDel" jdbcType="VARCHAR" property="isdel" />
+        <result column="deviceNum" jdbcType="VARCHAR" property="devicenum" />
+        <result column="resourceType" jdbcType="VARCHAR" property="resourcetype" />
+        <result column="EverydayTimes" jdbcType="INTEGER" property="everydaytimes" />
+        <result column="RepairFlag" jdbcType="INTEGER" property="repairflag" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    tId, tName, tCode, longitude, latitude, longitude2, latitude2, address, districtCode,
+    districtName, streetCode, streetName, unitCode, unitName, departmentCode, departmentName,
+    tType, level, washType, grossArea, mPitNum, mSeatNum, mToolNum, fPitNum, fSeatNum,
+    fToolNum, unisexNum, disabilityNum, urinalType, urinalNum, handWashNum, handDryerNum,
+    hasBarrierFree, hasManagerRoom, activeWellNum, inactiveWellNum, wellLidType, wellLidNum,
+    crossWellNum, summerStart, summerEnd, winterStart, winterEnd, cId, cName, createUser,
+    createTime, updateUser, updateTime, isBind, inUse, isDel, deviceNum, resourceType,
+    EverydayTimes, RepairFlag
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from wc_toilet
+        where tId = #{tid,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectWctoilet"  resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from wc_toilet
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from wc_toilet
+    where tId = #{tid,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.bkgd.toiletdemo.model.WcToilet">
+    insert into wc_toilet (tId, tName, tCode,
+      longitude, latitude, longitude2,
+      latitude2, address, districtCode,
+      districtName, streetCode, streetName,
+      unitCode, unitName, departmentCode,
+      departmentName, tType, level,
+      washType, grossArea, mPitNum,
+      mSeatNum, mToolNum, fPitNum,
+      fSeatNum, fToolNum, unisexNum,
+      disabilityNum, urinalType, urinalNum,
+      handWashNum, handDryerNum, hasBarrierFree,
+      hasManagerRoom, activeWellNum, inactiveWellNum,
+      wellLidType, wellLidNum, crossWellNum,
+      summerStart, summerEnd, winterStart,
+      winterEnd, cId, cName,
+      createUser, createTime, updateUser,
+      updateTime, isBind, inUse,
+      isDel, deviceNum, resourceType,
+      EverydayTimes, RepairFlag)
+    values (#{tid,jdbcType=VARCHAR}, #{tname,jdbcType=VARCHAR}, #{tcode,jdbcType=VARCHAR},
+      #{longitude,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR}, #{longitude2,jdbcType=VARCHAR},
+      #{latitude2,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{districtcode,jdbcType=VARCHAR},
+      #{districtname,jdbcType=VARCHAR}, #{streetcode,jdbcType=VARCHAR}, #{streetname,jdbcType=VARCHAR},
+      #{unitcode,jdbcType=VARCHAR}, #{unitname,jdbcType=VARCHAR}, #{departmentcode,jdbcType=VARCHAR},
+      #{departmentname,jdbcType=VARCHAR}, #{ttype,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR},
+      #{washtype,jdbcType=VARCHAR}, #{grossarea,jdbcType=DECIMAL}, #{mpitnum,jdbcType=INTEGER},
+      #{mseatnum,jdbcType=INTEGER}, #{mtoolnum,jdbcType=INTEGER}, #{fpitnum,jdbcType=INTEGER},
+      #{fseatnum,jdbcType=INTEGER}, #{ftoolnum,jdbcType=INTEGER}, #{unisexnum,jdbcType=INTEGER},
+      #{disabilitynum,jdbcType=INTEGER}, #{urinaltype,jdbcType=VARCHAR}, #{urinalnum,jdbcType=INTEGER},
+      #{handwashnum,jdbcType=INTEGER}, #{handdryernum,jdbcType=INTEGER}, #{hasbarrierfree,jdbcType=VARCHAR},
+      #{hasmanagerroom,jdbcType=VARCHAR}, #{activewellnum,jdbcType=INTEGER}, #{inactivewellnum,jdbcType=INTEGER},
+      #{welllidtype,jdbcType=VARCHAR}, #{welllidnum,jdbcType=INTEGER}, #{crosswellnum,jdbcType=INTEGER},
+      #{summerstart,jdbcType=VARCHAR}, #{summerend,jdbcType=VARCHAR}, #{winterstart,jdbcType=VARCHAR},
+      #{winterend,jdbcType=VARCHAR}, #{cid,jdbcType=VARCHAR}, #{cname,jdbcType=VARCHAR},
+      #{createuser,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR},
+      #{updatetime,jdbcType=TIMESTAMP}, #{isbind,jdbcType=VARCHAR}, #{inuse,jdbcType=VARCHAR},
+      #{isdel,jdbcType=VARCHAR}, #{devicenum,jdbcType=VARCHAR}, #{resourcetype,jdbcType=VARCHAR},
+      #{everydaytimes,jdbcType=INTEGER}, #{repairflag,jdbcType=INTEGER})
+  </insert>
+    <insert id="insertSelective" parameterType="com.bkgd.toiletdemo.model.WcToilet">
+        insert into wc_toilet
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="tid != null">
+                tId,
+            </if>
+            <if test="tname != null">
+                tName,
+            </if>
+            <if test="tcode != null">
+                tCode,
+            </if>
+            <if test="longitude != null">
+                longitude,
+            </if>
+            <if test="latitude != null">
+                latitude,
+            </if>
+            <if test="longitude2 != null">
+                longitude2,
+            </if>
+            <if test="latitude2 != null">
+                latitude2,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="districtcode != null">
+                districtCode,
+            </if>
+            <if test="districtname != null">
+                districtName,
+            </if>
+            <if test="streetcode != null">
+                streetCode,
+            </if>
+            <if test="streetname != null">
+                streetName,
+            </if>
+            <if test="unitcode != null">
+                unitCode,
+            </if>
+            <if test="unitname != null">
+                unitName,
+            </if>
+            <if test="departmentcode != null">
+                departmentCode,
+            </if>
+            <if test="departmentname != null">
+                departmentName,
+            </if>
+            <if test="ttype != null">
+                tType,
+            </if>
+            <if test="level != null">
+                level,
+            </if>
+            <if test="washtype != null">
+                washType,
+            </if>
+            <if test="grossarea != null">
+                grossArea,
+            </if>
+            <if test="mpitnum != null">
+                mPitNum,
+            </if>
+            <if test="mseatnum != null">
+                mSeatNum,
+            </if>
+            <if test="mtoolnum != null">
+                mToolNum,
+            </if>
+            <if test="fpitnum != null">
+                fPitNum,
+            </if>
+            <if test="fseatnum != null">
+                fSeatNum,
+            </if>
+            <if test="ftoolnum != null">
+                fToolNum,
+            </if>
+            <if test="unisexnum != null">
+                unisexNum,
+            </if>
+            <if test="disabilitynum != null">
+                disabilityNum,
+            </if>
+            <if test="urinaltype != null">
+                urinalType,
+            </if>
+            <if test="urinalnum != null">
+                urinalNum,
+            </if>
+            <if test="handwashnum != null">
+                handWashNum,
+            </if>
+            <if test="handdryernum != null">
+                handDryerNum,
+            </if>
+            <if test="hasbarrierfree != null">
+                hasBarrierFree,
+            </if>
+            <if test="hasmanagerroom != null">
+                hasManagerRoom,
+            </if>
+            <if test="activewellnum != null">
+                activeWellNum,
+            </if>
+            <if test="inactivewellnum != null">
+                inactiveWellNum,
+            </if>
+            <if test="welllidtype != null">
+                wellLidType,
+            </if>
+            <if test="welllidnum != null">
+                wellLidNum,
+            </if>
+            <if test="crosswellnum != null">
+                crossWellNum,
+            </if>
+            <if test="summerstart != null">
+                summerStart,
+            </if>
+            <if test="summerend != null">
+                summerEnd,
+            </if>
+            <if test="winterstart != null">
+                winterStart,
+            </if>
+            <if test="winterend != null">
+                winterEnd,
+            </if>
+            <if test="cid != null">
+                cId,
+            </if>
+            <if test="cname != null">
+                cName,
+            </if>
+            <if test="createuser != null">
+                createUser,
+            </if>
+            <if test="createtime != null">
+                createTime,
+            </if>
+            <if test="updateuser != null">
+                updateUser,
+            </if>
+            <if test="updatetime != null">
+                updateTime,
+            </if>
+            <if test="isbind != null">
+                isBind,
+            </if>
+            <if test="inuse != null">
+                inUse,
+            </if>
+            <if test="isdel != null">
+                isDel,
+            </if>
+            <if test="devicenum != null">
+                deviceNum,
+            </if>
+            <if test="resourcetype != null">
+                resourceType,
+            </if>
+            <if test="everydaytimes != null">
+                EverydayTimes,
+            </if>
+            <if test="repairflag != null">
+                RepairFlag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="tid != null">
+                #{tid,jdbcType=VARCHAR},
+            </if>
+            <if test="tname != null">
+                #{tname,jdbcType=VARCHAR},
+            </if>
+            <if test="tcode != null">
+                #{tcode,jdbcType=VARCHAR},
+            </if>
+            <if test="longitude != null">
+                #{longitude,jdbcType=VARCHAR},
+            </if>
+            <if test="latitude != null">
+                #{latitude,jdbcType=VARCHAR},
+            </if>
+            <if test="longitude2 != null">
+                #{longitude2,jdbcType=VARCHAR},
+            </if>
+            <if test="latitude2 != null">
+                #{latitude2,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="districtcode != null">
+                #{districtcode,jdbcType=VARCHAR},
+            </if>
+            <if test="districtname != null">
+                #{districtname,jdbcType=VARCHAR},
+            </if>
+            <if test="streetcode != null">
+                #{streetcode,jdbcType=VARCHAR},
+            </if>
+            <if test="streetname != null">
+                #{streetname,jdbcType=VARCHAR},
+            </if>
+            <if test="unitcode != null">
+                #{unitcode,jdbcType=VARCHAR},
+            </if>
+            <if test="unitname != null">
+                #{unitname,jdbcType=VARCHAR},
+            </if>
+            <if test="departmentcode != null">
+                #{departmentcode,jdbcType=VARCHAR},
+            </if>
+            <if test="departmentname != null">
+                #{departmentname,jdbcType=VARCHAR},
+            </if>
+            <if test="ttype != null">
+                #{ttype,jdbcType=VARCHAR},
+            </if>
+            <if test="level != null">
+                #{level,jdbcType=VARCHAR},
+            </if>
+            <if test="washtype != null">
+                #{washtype,jdbcType=VARCHAR},
+            </if>
+            <if test="grossarea != null">
+                #{grossarea,jdbcType=DECIMAL},
+            </if>
+            <if test="mpitnum != null">
+                #{mpitnum,jdbcType=INTEGER},
+            </if>
+            <if test="mseatnum != null">
+                #{mseatnum,jdbcType=INTEGER},
+            </if>
+            <if test="mtoolnum != null">
+                #{mtoolnum,jdbcType=INTEGER},
+            </if>
+            <if test="fpitnum != null">
+                #{fpitnum,jdbcType=INTEGER},
+            </if>
+            <if test="fseatnum != null">
+                #{fseatnum,jdbcType=INTEGER},
+            </if>
+            <if test="ftoolnum != null">
+                #{ftoolnum,jdbcType=INTEGER},
+            </if>
+            <if test="unisexnum != null">
+                #{unisexnum,jdbcType=INTEGER},
+            </if>
+            <if test="disabilitynum != null">
+                #{disabilitynum,jdbcType=INTEGER},
+            </if>
+            <if test="urinaltype != null">
+                #{urinaltype,jdbcType=VARCHAR},
+            </if>
+            <if test="urinalnum != null">
+                #{urinalnum,jdbcType=INTEGER},
+            </if>
+            <if test="handwashnum != null">
+                #{handwashnum,jdbcType=INTEGER},
+            </if>
+            <if test="handdryernum != null">
+                #{handdryernum,jdbcType=INTEGER},
+            </if>
+            <if test="hasbarrierfree != null">
+                #{hasbarrierfree,jdbcType=VARCHAR},
+            </if>
+            <if test="hasmanagerroom != null">
+                #{hasmanagerroom,jdbcType=VARCHAR},
+            </if>
+            <if test="activewellnum != null">
+                #{activewellnum,jdbcType=INTEGER},
+            </if>
+            <if test="inactivewellnum != null">
+                #{inactivewellnum,jdbcType=INTEGER},
+            </if>
+            <if test="welllidtype != null">
+                #{welllidtype,jdbcType=VARCHAR},
+            </if>
+            <if test="welllidnum != null">
+                #{welllidnum,jdbcType=INTEGER},
+            </if>
+            <if test="crosswellnum != null">
+                #{crosswellnum,jdbcType=INTEGER},
+            </if>
+            <if test="summerstart != null">
+                #{summerstart,jdbcType=VARCHAR},
+            </if>
+            <if test="summerend != null">
+                #{summerend,jdbcType=VARCHAR},
+            </if>
+            <if test="winterstart != null">
+                #{winterstart,jdbcType=VARCHAR},
+            </if>
+            <if test="winterend != null">
+                #{winterend,jdbcType=VARCHAR},
+            </if>
+            <if test="cid != null">
+                #{cid,jdbcType=VARCHAR},
+            </if>
+            <if test="cname != null">
+                #{cname,jdbcType=VARCHAR},
+            </if>
+            <if test="createuser != null">
+                #{createuser,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateuser != null">
+                #{updateuser,jdbcType=VARCHAR},
+            </if>
+            <if test="updatetime != null">
+                #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isbind != null">
+                #{isbind,jdbcType=VARCHAR},
+            </if>
+            <if test="inuse != null">
+                #{inuse,jdbcType=VARCHAR},
+            </if>
+            <if test="isdel != null">
+                #{isdel,jdbcType=VARCHAR},
+            </if>
+            <if test="devicenum != null">
+                #{devicenum,jdbcType=VARCHAR},
+            </if>
+            <if test="resourcetype != null">
+                #{resourcetype,jdbcType=VARCHAR},
+            </if>
+            <if test="everydaytimes != null">
+                #{everydaytimes,jdbcType=INTEGER},
+            </if>
+            <if test="repairflag != null">
+                #{repairflag,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.bkgd.toiletdemo.model.WcToilet">
+        update wc_toilet
+        <set>
+            <if test="tname != null">
+                tName = #{tname,jdbcType=VARCHAR},
+            </if>
+            <if test="tcode != null">
+                tCode = #{tcode,jdbcType=VARCHAR},
+            </if>
+            <if test="longitude != null">
+                longitude = #{longitude,jdbcType=VARCHAR},
+            </if>
+            <if test="latitude != null">
+                latitude = #{latitude,jdbcType=VARCHAR},
+            </if>
+            <if test="longitude2 != null">
+                longitude2 = #{longitude2,jdbcType=VARCHAR},
+            </if>
+            <if test="latitude2 != null">
+                latitude2 = #{latitude2,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="districtcode != null">
+                districtCode = #{districtcode,jdbcType=VARCHAR},
+            </if>
+            <if test="districtname != null">
+                districtName = #{districtname,jdbcType=VARCHAR},
+            </if>
+            <if test="streetcode != null">
+                streetCode = #{streetcode,jdbcType=VARCHAR},
+            </if>
+            <if test="streetname != null">
+                streetName = #{streetname,jdbcType=VARCHAR},
+            </if>
+            <if test="unitcode != null">
+                unitCode = #{unitcode,jdbcType=VARCHAR},
+            </if>
+            <if test="unitname != null">
+                unitName = #{unitname,jdbcType=VARCHAR},
+            </if>
+            <if test="departmentcode != null">
+                departmentCode = #{departmentcode,jdbcType=VARCHAR},
+            </if>
+            <if test="departmentname != null">
+                departmentName = #{departmentname,jdbcType=VARCHAR},
+            </if>
+            <if test="ttype != null">
+                tType = #{ttype,jdbcType=VARCHAR},
+            </if>
+            <if test="level != null">
+                level = #{level,jdbcType=VARCHAR},
+            </if>
+            <if test="washtype != null">
+                washType = #{washtype,jdbcType=VARCHAR},
+            </if>
+            <if test="grossarea != null">
+                grossArea = #{grossarea,jdbcType=DECIMAL},
+            </if>
+            <if test="mpitnum != null">
+                mPitNum = #{mpitnum,jdbcType=INTEGER},
+            </if>
+            <if test="mseatnum != null">
+                mSeatNum = #{mseatnum,jdbcType=INTEGER},
+            </if>
+            <if test="mtoolnum != null">
+                mToolNum = #{mtoolnum,jdbcType=INTEGER},
+            </if>
+            <if test="fpitnum != null">
+                fPitNum = #{fpitnum,jdbcType=INTEGER},
+            </if>
+            <if test="fseatnum != null">
+                fSeatNum = #{fseatnum,jdbcType=INTEGER},
+            </if>
+            <if test="ftoolnum != null">
+                fToolNum = #{ftoolnum,jdbcType=INTEGER},
+            </if>
+            <if test="unisexnum != null">
+                unisexNum = #{unisexnum,jdbcType=INTEGER},
+            </if>
+            <if test="disabilitynum != null">
+                disabilityNum = #{disabilitynum,jdbcType=INTEGER},
+            </if>
+            <if test="urinaltype != null">
+                urinalType = #{urinaltype,jdbcType=VARCHAR},
+            </if>
+            <if test="urinalnum != null">
+                urinalNum = #{urinalnum,jdbcType=INTEGER},
+            </if>
+            <if test="handwashnum != null">
+                handWashNum = #{handwashnum,jdbcType=INTEGER},
+            </if>
+            <if test="handdryernum != null">
+                handDryerNum = #{handdryernum,jdbcType=INTEGER},
+            </if>
+            <if test="hasbarrierfree != null">
+                hasBarrierFree = #{hasbarrierfree,jdbcType=VARCHAR},
+            </if>
+            <if test="hasmanagerroom != null">
+                hasManagerRoom = #{hasmanagerroom,jdbcType=VARCHAR},
+            </if>
+            <if test="activewellnum != null">
+                activeWellNum = #{activewellnum,jdbcType=INTEGER},
+            </if>
+            <if test="inactivewellnum != null">
+                inactiveWellNum = #{inactivewellnum,jdbcType=INTEGER},
+            </if>
+            <if test="welllidtype != null">
+                wellLidType = #{welllidtype,jdbcType=VARCHAR},
+            </if>
+            <if test="welllidnum != null">
+                wellLidNum = #{welllidnum,jdbcType=INTEGER},
+            </if>
+            <if test="crosswellnum != null">
+                crossWellNum = #{crosswellnum,jdbcType=INTEGER},
+            </if>
+            <if test="summerstart != null">
+                summerStart = #{summerstart,jdbcType=VARCHAR},
+            </if>
+            <if test="summerend != null">
+                summerEnd = #{summerend,jdbcType=VARCHAR},
+            </if>
+            <if test="winterstart != null">
+                winterStart = #{winterstart,jdbcType=VARCHAR},
+            </if>
+            <if test="winterend != null">
+                winterEnd = #{winterend,jdbcType=VARCHAR},
+            </if>
+            <if test="cid != null">
+                cId = #{cid,jdbcType=VARCHAR},
+            </if>
+            <if test="cname != null">
+                cName = #{cname,jdbcType=VARCHAR},
+            </if>
+            <if test="createuser != null">
+                createUser = #{createuser,jdbcType=VARCHAR},
+            </if>
+            <if test="createtime != null">
+                createTime = #{createtime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateuser != null">
+                updateUser = #{updateuser,jdbcType=VARCHAR},
+            </if>
+            <if test="updatetime != null">
+                updateTime = #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isbind != null">
+                isBind = #{isbind,jdbcType=VARCHAR},
+            </if>
+            <if test="inuse != null">
+                inUse = #{inuse,jdbcType=VARCHAR},
+            </if>
+            <if test="isdel != null">
+                isDel = #{isdel,jdbcType=VARCHAR},
+            </if>
+            <if test="devicenum != null">
+                deviceNum = #{devicenum,jdbcType=VARCHAR},
+            </if>
+            <if test="resourcetype != null">
+                resourceType = #{resourcetype,jdbcType=VARCHAR},
+            </if>
+            <if test="everydaytimes != null">
+                EverydayTimes = #{everydaytimes,jdbcType=INTEGER},
+            </if>
+            <if test="repairflag != null">
+                RepairFlag = #{repairflag,jdbcType=INTEGER},
+            </if>
+        </set>
+        where tId = #{tid,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.bkgd.toiletdemo.model.WcToilet">
+    update wc_toilet
+    set tName = #{tname,jdbcType=VARCHAR},
+      tCode = #{tcode,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=VARCHAR},
+      latitude = #{latitude,jdbcType=VARCHAR},
+      longitude2 = #{longitude2,jdbcType=VARCHAR},
+      latitude2 = #{latitude2,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      districtCode = #{districtcode,jdbcType=VARCHAR},
+      districtName = #{districtname,jdbcType=VARCHAR},
+      streetCode = #{streetcode,jdbcType=VARCHAR},
+      streetName = #{streetname,jdbcType=VARCHAR},
+      unitCode = #{unitcode,jdbcType=VARCHAR},
+      unitName = #{unitname,jdbcType=VARCHAR},
+      departmentCode = #{departmentcode,jdbcType=VARCHAR},
+      departmentName = #{departmentname,jdbcType=VARCHAR},
+      tType = #{ttype,jdbcType=VARCHAR},
+      level = #{level,jdbcType=VARCHAR},
+      washType = #{washtype,jdbcType=VARCHAR},
+      grossArea = #{grossarea,jdbcType=DECIMAL},
+      mPitNum = #{mpitnum,jdbcType=INTEGER},
+      mSeatNum = #{mseatnum,jdbcType=INTEGER},
+      mToolNum = #{mtoolnum,jdbcType=INTEGER},
+      fPitNum = #{fpitnum,jdbcType=INTEGER},
+      fSeatNum = #{fseatnum,jdbcType=INTEGER},
+      fToolNum = #{ftoolnum,jdbcType=INTEGER},
+      unisexNum = #{unisexnum,jdbcType=INTEGER},
+      disabilityNum = #{disabilitynum,jdbcType=INTEGER},
+      urinalType = #{urinaltype,jdbcType=VARCHAR},
+      urinalNum = #{urinalnum,jdbcType=INTEGER},
+      handWashNum = #{handwashnum,jdbcType=INTEGER},
+      handDryerNum = #{handdryernum,jdbcType=INTEGER},
+      hasBarrierFree = #{hasbarrierfree,jdbcType=VARCHAR},
+      hasManagerRoom = #{hasmanagerroom,jdbcType=VARCHAR},
+      activeWellNum = #{activewellnum,jdbcType=INTEGER},
+      inactiveWellNum = #{inactivewellnum,jdbcType=INTEGER},
+      wellLidType = #{welllidtype,jdbcType=VARCHAR},
+      wellLidNum = #{welllidnum,jdbcType=INTEGER},
+      crossWellNum = #{crosswellnum,jdbcType=INTEGER},
+      summerStart = #{summerstart,jdbcType=VARCHAR},
+      summerEnd = #{summerend,jdbcType=VARCHAR},
+      winterStart = #{winterstart,jdbcType=VARCHAR},
+      winterEnd = #{winterend,jdbcType=VARCHAR},
+      cId = #{cid,jdbcType=VARCHAR},
+      cName = #{cname,jdbcType=VARCHAR},
+      createUser = #{createuser,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateUser = #{updateuser,jdbcType=VARCHAR},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      isBind = #{isbind,jdbcType=VARCHAR},
+      inUse = #{inuse,jdbcType=VARCHAR},
+      isDel = #{isdel,jdbcType=VARCHAR},
+      deviceNum = #{devicenum,jdbcType=VARCHAR},
+      resourceType = #{resourcetype,jdbcType=VARCHAR},
+      EverydayTimes = #{everydaytimes,jdbcType=INTEGER},
+      RepairFlag = #{repairflag,jdbcType=INTEGER}
+    where tId = #{tid,jdbcType=VARCHAR}
+  </update>
+</mapper>

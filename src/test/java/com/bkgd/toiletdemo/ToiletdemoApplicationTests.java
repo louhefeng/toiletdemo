@@ -18,7 +18,6 @@ public class ToiletdemoApplicationTests {
     private WcToiletDao wcToiletDao;
     @Test
     public void contextLoads() {
-
         List<WcToilet> toilelist = wcToiletDao.selectWctoilet();
         System.out.println(toilelist.size());
     }

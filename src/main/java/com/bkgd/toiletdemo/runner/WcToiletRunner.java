@@ -33,6 +33,6 @@ public class WcToiletRunner implements CommandLineRunner {
         List<WcToilet> wctoiletList = wcToiletDao.selectWctoilet();
         System.out.println(wctoiletList.size()+"获取结果数量");
         WcToiletCacheManager.wcToiletMap=wctoiletList.stream().collect(Collectors.toMap(WcToilet::getTid,wcToilet -> wcToilet));
-        System.out.println("Map打印："+Arrays.toString(WcToiletCacheManager.wcToiletMap.entrySet().toArray()));
+        System.out.println("初始化公厕数据到内存,Map打印："+Arrays.toString(WcToiletCacheManager.wcToiletMap.entrySet().toArray()));
     }
 }

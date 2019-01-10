@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bkgd.toiletdemo.dao.WcDeviceDao">
+  <resultMap id="BaseResultMap" type="com.bkgd.toiletdemo.model.WcDevice">
+    <id column="devId" jdbcType="VARCHAR" property="devid" />
+    <result column="devNo" jdbcType="VARCHAR" property="devno" />
+    <result column="storeman" jdbcType="VARCHAR" property="storeman" />
+    <result column="devType" jdbcType="VARCHAR" property="devtype" />
+    <result column="tId" jdbcType="VARCHAR" property="tid" />
+    <result column="tCode" jdbcType="VARCHAR" property="tcode" />
+    <result column="tName" jdbcType="VARCHAR" property="tname" />
+    <result column="unitCode" jdbcType="VARCHAR" property="unitcode" />
+    <result column="devName" jdbcType="VARCHAR" property="devname" />
+    <result column="repairCycle" jdbcType="VARCHAR" property="repaircycle" />
+    <result column="putInDate" jdbcType="TIMESTAMP" property="putindate" />
+    <result column="picUrl" jdbcType="VARCHAR" property="picurl" />
+    <result column="devParam" jdbcType="VARCHAR" property="devparam" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    devId, devNo, storeman, devType, tId, tCode, tName, unitCode, devName, repairCycle, 
+    putInDate, picUrl, devParam
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from wc_device
+    where devId = #{devid,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectWcdevice" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from wc_device
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from wc_device
+    where devId = #{devid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.bkgd.toiletdemo.model.WcDevice">
+    insert into wc_device (devId, devNo, storeman, 
+      devType, tId, tCode, 
+      tName, unitCode, devName, 
+      repairCycle, putInDate, picUrl, 
+      devParam)
+    values (#{devid,jdbcType=VARCHAR}, #{devno,jdbcType=VARCHAR}, #{storeman,jdbcType=VARCHAR}, 
+      #{devtype,jdbcType=VARCHAR}, #{tid,jdbcType=VARCHAR}, #{tcode,jdbcType=VARCHAR}, 
+      #{tname,jdbcType=VARCHAR}, #{unitcode,jdbcType=VARCHAR}, #{devname,jdbcType=VARCHAR}, 
+      #{repaircycle,jdbcType=VARCHAR}, #{putindate,jdbcType=TIMESTAMP}, #{picurl,jdbcType=VARCHAR}, 
+      #{devparam,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bkgd.toiletdemo.model.WcDevice">
+    insert into wc_device
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="devid != null">
+        devId,
+      </if>
+      <if test="devno != null">
+        devNo,
+      </if>
+      <if test="storeman != null">
+        storeman,
+      </if>
+      <if test="devtype != null">
+        devType,
+      </if>
+      <if test="tid != null">
+        tId,
+      </if>
+      <if test="tcode != null">
+        tCode,
+      </if>
+      <if test="tname != null">
+        tName,
+      </if>
+      <if test="unitcode != null">
+        unitCode,
+      </if>
+      <if test="devname != null">
+        devName,
+      </if>
+      <if test="repaircycle != null">
+        repairCycle,
+      </if>
+      <if test="putindate != null">
+        putInDate,
+      </if>
+      <if test="picurl != null">
+        picUrl,
+      </if>
+      <if test="devparam != null">
+        devParam,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="devid != null">
+        #{devid,jdbcType=VARCHAR},
+      </if>
+      <if test="devno != null">
+        #{devno,jdbcType=VARCHAR},
+      </if>
+      <if test="storeman != null">
+        #{storeman,jdbcType=VARCHAR},
+      </if>
+      <if test="devtype != null">
+        #{devtype,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null">
+        #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="tcode != null">
+        #{tcode,jdbcType=VARCHAR},
+      </if>
+      <if test="tname != null">
+        #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="unitcode != null">
+        #{unitcode,jdbcType=VARCHAR},
+      </if>
+      <if test="devname != null">
+        #{devname,jdbcType=VARCHAR},
+      </if>
+      <if test="repaircycle != null">
+        #{repaircycle,jdbcType=VARCHAR},
+      </if>
+      <if test="putindate != null">
+        #{putindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="picurl != null">
+        #{picurl,jdbcType=VARCHAR},
+      </if>
+      <if test="devparam != null">
+        #{devparam,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bkgd.toiletdemo.model.WcDevice">
+    update wc_device
+    <set>
+      <if test="devno != null">
+        devNo = #{devno,jdbcType=VARCHAR},
+      </if>
+      <if test="storeman != null">
+        storeman = #{storeman,jdbcType=VARCHAR},
+      </if>
+      <if test="devtype != null">
+        devType = #{devtype,jdbcType=VARCHAR},
+      </if>
+      <if test="tid != null">
+        tId = #{tid,jdbcType=VARCHAR},
+      </if>
+      <if test="tcode != null">
+        tCode = #{tcode,jdbcType=VARCHAR},
+      </if>
+      <if test="tname != null">
+        tName = #{tname,jdbcType=VARCHAR},
+      </if>
+      <if test="unitcode != null">
+        unitCode = #{unitcode,jdbcType=VARCHAR},
+      </if>
+      <if test="devname != null">
+        devName = #{devname,jdbcType=VARCHAR},
+      </if>
+      <if test="repaircycle != null">
+        repairCycle = #{repaircycle,jdbcType=VARCHAR},
+      </if>
+      <if test="putindate != null">
+        putInDate = #{putindate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="picurl != null">
+        picUrl = #{picurl,jdbcType=VARCHAR},
+      </if>
+      <if test="devparam != null">
+        devParam = #{devparam,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where devId = #{devid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bkgd.toiletdemo.model.WcDevice">
+    update wc_device
+    set devNo = #{devno,jdbcType=VARCHAR},
+      storeman = #{storeman,jdbcType=VARCHAR},
+      devType = #{devtype,jdbcType=VARCHAR},
+      tId = #{tid,jdbcType=VARCHAR},
+      tCode = #{tcode,jdbcType=VARCHAR},
+      tName = #{tname,jdbcType=VARCHAR},
+      unitCode = #{unitcode,jdbcType=VARCHAR},
+      devName = #{devname,jdbcType=VARCHAR},
+      repairCycle = #{repaircycle,jdbcType=VARCHAR},
+      putInDate = #{putindate,jdbcType=TIMESTAMP},
+      picUrl = #{picurl,jdbcType=VARCHAR},
+      devParam = #{devparam,jdbcType=VARCHAR}
+    where devId = #{devid,jdbcType=VARCHAR}
+  </update>
+</mapper>

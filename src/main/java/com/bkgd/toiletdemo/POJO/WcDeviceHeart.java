@@ -2,13 +2,13 @@ package com.bkgd.toiletdemo.POJO;
 
 /**
  * com.bkgd.toiletdemo.POJO
- *公厕保洁数据对象
+ *
  * @author lhf
- * @date 2019/1/9
- * @time 18:23
+ * @date 2019/1/10
+ * @time 15:33
  * @project_name toiletdemo
  */
-public class WcToiletClean {
+public class WcDeviceHeart {
 
     /**
      * 方法名
@@ -27,7 +27,8 @@ public class WcToiletClean {
      */
     private Param params;
 
-    //get set method
+    //get set
+
     public String getMethod() {
         return method;
     }

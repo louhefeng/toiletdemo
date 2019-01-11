@@ -22,6 +22,6 @@
     在线设备:${wcdeviceonlinesize}<br/>
     在线比例:<br/>
 
-    <script>setTimeout("location=location; ", 1000); </script>
+    <script>setTimeout("location=location; ", 50); </script>
 </body>
 </html>

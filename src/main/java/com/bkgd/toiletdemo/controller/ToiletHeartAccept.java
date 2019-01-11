@@ -44,6 +44,7 @@ public class ToiletHeartAccept {
             {
                 if(WcDeviceCacheManager.wcDeviceMap.containsKey(wcDeviceHeart.getParams().getReaderID())){
                     WcDeviceHeartCacheManager.wcDeviceHeartMap.put(wcDeviceHeart.getParams().getReaderID(), wcDeviceHeart);
+                    System.out.println("接收到的rfid数据后");
                   //  System.out.println("接收到的rfid数据后，存入MAP，MAP数据集合：" + Arrays.toString(WcDeviceHeartCacheManager.wcDeviceHeartMap.entrySet().toArray()));
                 }else{
                  //   System.out.println("rfid 其他数据不接受");

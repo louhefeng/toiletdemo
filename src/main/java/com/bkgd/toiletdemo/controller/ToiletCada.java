@@ -54,7 +54,7 @@ public class ToiletCada {
             Date fromday = DateUtil.stringToDate(timeStamp, "yyyy/MM/dd HH:mm:ss");
             Date now=new Date();
             long second=DateUtil.getDayBySecondDate(fromday,now);
-            System.out.println(wcDeviceHeart.getParams().getReaderID()+",延迟="+second);
+          //  System.out.println(wcDeviceHeart.getParams().getReaderID()+",延迟="+second);
             if(second < 20){
                 //线程安全
                 wcdeviceonlinesize+=1;

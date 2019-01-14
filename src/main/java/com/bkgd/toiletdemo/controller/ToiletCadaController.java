@@ -1,6 +1,8 @@
 package com.bkgd.toiletdemo.controller;
 
+import com.bkgd.toiletdemo.POJO.ToiletCada;
 import com.bkgd.toiletdemo.POJO.WcDeviceHeart;
+import com.bkgd.toiletdemo.POJO.WcToiletClean;
 import com.bkgd.toiletdemo.cache.WcDeviceCacheManager;
 import com.bkgd.toiletdemo.cache.WcDeviceHeartCacheManager;
 import com.bkgd.toiletdemo.cache.WcToiletCacheManager;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
 import java.util.Map;
@@ -25,7 +28,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/cada")
-public class ToiletCada {
+public class ToiletCadaController {
 
 
     /**
@@ -33,14 +36,28 @@ public class ToiletCada {
      * @return
      */
     @RequestMapping("/toilet")
-    public String toiletCada(ModelMap modelMap){
+    @ResponseBody
+    public ToiletCada toiletCada(ModelMap modelMap){
 
+        ToiletCada toiletCada=new ToiletCada();
         //保洁统计
         int wctoiletsize = WcToiletCacheManager.wcToiletMap.size();
         modelMap.addAttribute("toiletsize",wctoiletsize);
+        toiletCada.setWctoiletsize(wctoiletsize);
 
-        int wctoiletcleansize=WcToiletCleanCacheManager.wcToiletCleanMap.size();
-
+        //已保洁， 保洁时间持续50s,为已保洁
+        int wctoiletcleansize=0;
+        Map<String, WcToiletClean> wcToiletCleanMap = WcToiletCleanCacheManager.wcToiletCleanMap;
+        Date now=new Date();
+        for (WcToiletClean wcToiletClean : wcToiletCleanMap.values()) {
+            String starttime = wcToiletClean.getStarttime();
+            Date startdate = DateUtil.stringToDate(starttime, "yyyy/MM/dd HH:mm:ss");
+            long second = DateUtil.getDayBySecondDate(startdate, now);
+            if(second>49){
+                wctoiletcleansize+=1;
+            }
+        }
+        toiletCada.setToiletcleansize(wctoiletcleansize);
         modelMap.addAttribute("toiletcleansize",wctoiletcleansize);
         //出勤统计
         //在线统计
@@ -52,17 +69,17 @@ public class ToiletCada {
         for (WcDeviceHeart wcDeviceHeart : heartmap.values()) {
             String timeStamp=wcDeviceHeart.getParams().getTimeStamp();
             Date fromday = DateUtil.stringToDate(timeStamp, "yyyy/MM/dd HH:mm:ss");
-            Date now=new Date();
+
             long second=DateUtil.getDayBySecondDate(fromday,now);
           //  System.out.println(wcDeviceHeart.getParams().getReaderID()+",延迟="+second);
-            if(second < 20){
+            if(second < 40){
                 //线程安全
                 wcdeviceonlinesize+=1;
             }
         }
-
+        toiletCada.setWcdeviceonlinesize(wcdeviceonlinesize);
         modelMap.addAttribute("wcdeviceonlinesize",wcdeviceonlinesize);
 
-        return "toiletCada";
+        return toiletCada;
     }
 }

@@ -25,10 +25,10 @@ import java.util.Arrays;
  */
 @RestController
 @RequestMapping("/")
-public class ToiletAccept {
+public class ToiletAcceptController {
 
     /**
-     * 接收
+     * rfid接收
      *
      * @return 0、失败,1、成功
      */
@@ -40,12 +40,22 @@ public class ToiletAccept {
         //3整理数据
         //4数据放入内存中
         try {
-            if (WcToiletCacheManager.wcToiletMap.containsKey(wcToiletClean.getParams().getcId())) {
-                WcToiletCleanCacheManager.wcToiletCleanMap.put(wcToiletClean.getParams().getcId(), wcToiletClean);
+           // if (WcToiletCacheManager.wcToiletMap.containsKey(wcToiletClean.getParams().getcId())) {
+
+                if(WcToiletCleanCacheManager.wcToiletCleanMap.get(wcToiletClean.getParams().getcId())!=null){
+                    //上一次的开始时间
+                    wcToiletClean.setStarttime(WcToiletCleanCacheManager.wcToiletCleanMap.get(wcToiletClean.getParams().getcId()).getStarttime());
+                    WcToiletCleanCacheManager.wcToiletCleanMap.put(wcToiletClean.getParams().getcId(), wcToiletClean);
+                }else{
+                    //本次的开始时间
+                    wcToiletClean.setStarttime(wcToiletClean.getParams().getTimeStamp());
+                    WcToiletCleanCacheManager.wcToiletCleanMap.put(wcToiletClean.getParams().getcId(), wcToiletClean);
+                }
+
               //  System.out.println("接收到的公厕保洁成数据后，存入MAP，MAP数据集合：" + Arrays.toString(WcToiletCleanCacheManager.wcToiletCleanMap.entrySet().toArray()));
-            } else {
+          //  } else {
                // System.out.println("厕所设备" + wcToiletClean.getParams().getcId() + ",不存在");
-            }
+           // }
         } catch (Exception e) {
             e.printStackTrace();
         }

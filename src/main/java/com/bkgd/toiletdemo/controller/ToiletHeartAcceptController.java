@@ -25,7 +25,7 @@ import java.util.Arrays;
  * @project_name toiletdemo
  */
 @RestController
-public class ToiletHeartAccept {
+public class ToiletHeartAcceptController {
 
     /**
      * 接收rfid心跳数据

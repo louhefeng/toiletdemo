@@ -27,6 +27,12 @@ public class WcToiletClean {
      */
     private Param params;
 
+    /**
+     * 保洁开始时间.2s不持续
+     * @return
+     */
+    private String starttime;
+
     //get set method
     public String getMethod() {
         return method;
@@ -58,5 +64,13 @@ public class WcToiletClean {
 
     public void setParams(Param params) {
         this.params = params;
+    }
+
+    public String getStarttime() {
+        return starttime;
+    }
+
+    public void setStarttime(String starttime) {
+        this.starttime = starttime;
     }
 }
